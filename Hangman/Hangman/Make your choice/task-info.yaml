@@ -1,0 +1,94 @@
+type: edu
+custom_name: stage3
+files:
+- name: tests.py
+  visible: false
+  text: |
+    from hstest.stage_test import *
+    from hstest.test_case import TestCase
+    from hstest.check_result import CheckResult
+
+    from random import shuffle
+
+    CheckResult.correct = lambda: CheckResult(True, '')
+    CheckResult.wrong = lambda feedback: CheckResult(False, feedback)
+
+    description_list = ['python', 'java', 'kotlin', 'javascript']
+    out_of_description = ['clojure', 'haskell', 'typescript', 'assembler']
+
+    catch = {i: 0 for i in description_list}
+
+
+    class CoffeeMachineTest(StageTest):
+        def generate(self) -> List[TestCase]:
+            tests = []
+
+            for word in description_list + out_of_description:
+                for i in range(100):
+                    tests += [TestCase(stdin=word, attach=word)]
+
+            shuffle(tests)
+
+            word = 'last'
+            tests += [TestCase(stdin=word, attach=word)]
+            return tests
+
+        def check(self, reply: str, attach: Any) -> CheckResult:
+
+            survived = 'You survived!'
+            hanged = 'You are hanged!'
+
+            is_survived = survived in reply
+            is_hanged = hanged in reply
+
+            if is_survived and is_hanged:
+                return CheckResult.wrong(
+                    f'Looks like your output contains both \"{survived}\"'
+                    f' and \"{hanged}\". You should output only one of them.'
+                )
+
+            if not is_survived and not is_hanged:
+                return CheckResult.wrong(
+                    f'Looks like your output doesn\'t contain neither \"{survived}\"'
+                    f' nor \"{hanged}\". You should output one of them.'
+                )
+
+            if attach in out_of_description:
+                if is_survived:
+                    return CheckResult.wrong(
+                        f'Input contains a word out of the '
+                        f'list form the description but the '
+                        f'program output \"{survived}\"'
+                    )
+                else:
+                    return CheckResult.correct()
+
+            elif attach in description_list:
+                catch[attach] += is_survived
+                return CheckResult.correct()
+
+            else:
+                if any(v == 0 for v in catch.values()):
+                    return CheckResult.wrong(
+                        "Looks like your program is not using "
+                        "all of the words to guess from the list in description"
+                    )
+                else:
+                    return CheckResult.correct()
+
+
+    if __name__ == '__main__':
+        CoffeeMachineTest('hangman.hangman').run_tests()
+  learner_created: false
+- name: hangman/hangman.py
+  visible: true
+  text: |-
+    print("H A N G M A N")
+    if input("Guess the word:") == "python":
+        print("You survived!")
+    else:
+        print("You are hanged!")
+  learner_created: true
+feedback_link: https://hyperskill.org/projects/69/stages/374/implement
+status: Solved
+record: 3

@@ -1,0 +1,94 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>A real coffee machine doesn't have an infinite supply of water, milk, or coffee beans. And if you input a really big number, it's almost certain that a real coffee machine wouldn't have the supplies needed to make all that coffee for you.</p>
+
+<p>In this stage, you need to improve the previous program. Now you will check amounts of water, milk, and coffee beans available in your coffee machine at the moment.</p>
+
+<h2 style="text-align: center;">Objectives</h2>
+
+<p>Write a program that does the following:</p>
+
+<ol>
+	<li>It requests the amounts of water, milk, and coffee beans available at the moment, and then asks for the number of cups a user needs.</li>
+	<li>If the coffee machine has enough supplies to make the specified amount of coffee, the program should print <code class="java">"Yes, I can make that amount of coffee"</code>.</li>
+	<li>If the coffee machine can make more than that, the program should output <code class="java">"Yes, I can make that amount of coffee (and even N more than that)"</code>, where <em>N</em> is the number of additional cups of coffee that the coffee machine can make.</li>
+	<li>If the amount of given resources is not enough to make the specified amount of coffee, the program should output <code class="java">"No, I can make only N cups of coffee"</code>.</li>
+</ol>
+
+<p>Like in the previous stage, the coffee machine needs <em>200 ml</em> of water, <em>50 ml</em> of milk, and <em>15 g</em> of coffee beans to make one cup of coffee.</p>
+
+<h2 style="text-align: center;">Examples</h2>
+
+<p>The greater-than symbol followed by space (<code class="java">&gt; </code>) represents the user input. Notice that it's not the part of the input.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<pre><code class="language-no-highlight">Write how many ml of water the coffee machine has:
+&gt; 300
+Write how many ml of milk the coffee machine has:
+&gt; 65
+Write how many grams of coffee beans the coffee machine has:
+&gt; 100
+Write how many cups of coffee you will need:
+&gt; 1
+Yes, I can make that amount of coffee</code></pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><code class="language-no-highlight">Write how many ml of water the coffee machine has:
+&gt; 500
+Write how many ml of milk the coffee machine has:
+&gt; 250
+Write how many grams of coffee beans the coffee machine has:
+&gt; 200
+Write how many cups of coffee you will need:
+&gt; 10
+No, I can make only 2 cups of coffee</code></pre>
+
+<p><strong>Example 3:</strong></p>
+
+<pre><code class="language-no-highlight">Write how many ml of water the coffee machine has:
+&gt; 1550
+Write how many ml of milk the coffee machine has:
+&gt; 299
+Write how many grams of coffee beans the coffee machine has:
+&gt; 300
+Write how many cups of coffee you will need:
+&gt; 3
+Yes, I can make that amount of coffee (and even 2 more than that)</code></pre>
+
+<p><strong>Example 4:</strong></p>
+
+<pre><code class="language-no-highlight">Write how many ml of water the coffee machine has:
+&gt; 0
+Write how many ml of milk the coffee machine has:
+&gt; 0
+Write how many grams of coffee beans the coffee machine has:
+&gt; 0
+Write how many cups of coffee you will need:
+&gt; 1
+No, I can make only 0 cups of coffee</code></pre>
+
+<p><strong>Example 5:</strong></p>
+
+<pre><code class="language-no-highlight">Write how many ml of water the coffee machine has:
+&gt; 0
+Write how many ml of milk the coffee machine has:
+&gt; 0
+Write how many grams of coffee beans the coffee machine has:
+&gt; 0
+Write how many cups of coffee you will need:
+&gt; 0
+Yes, I can make that amount of coffee </code></pre>
+
+<p><strong>Example 6:</strong></p>
+
+<pre><code class="language-no-highlight">Write how many ml of water the coffee machine has:
+&gt; 200
+Write how many ml of milk the coffee machine has:
+&gt; 50
+Write how many grams of coffee beans the coffee machine has:
+&gt; 15
+Write how many cups of coffee you will need:
+&gt; 0
+Yes, I can make that amount of coffee (and even 1 more than that)</code></pre>

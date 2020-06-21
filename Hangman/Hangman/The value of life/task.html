@@ -1,0 +1,104 @@
+<h2>Description</h2>
+
+<p>The recent version of the game is not as fun until we don't handle the player's victory. A player has 8 attempts to guess letters and its number is reduced even if the letter was correct.</p>
+
+<p>Now a player will have a lot of attempts and is limited only by the number of mistakes they make. A player can be mistaken 8 times and wins when <strong>all</strong> the letters are guessed and there are still some tries left. If the player uses the last try and actually guesses the word, they are lucky then!</p>
+
+<h2>Objectives</h2>
+
+<p>The player starts the game with 8 "lives", that is our player can input the wrong letter 8 times.</p>
+
+<ol>
+	<li>Print <code class="java">No such letter in the word</code> and reduce the attempts count if the word guessed by the program doesn't contain this letter.</li>
+	<li>Print <code class="java">No improvements</code> and reduce the attempts count if the guessed word contains this letter but the user tried this letter before.</li>
+	<li>The attempts count should be decreased <strong>only</strong> if there are no letters to uncover.</li>
+</ol>
+
+<p><div class="alert alert-warning">Please, make sure that your program's output formatting precisely follows the example output formatting. Pay attention to the empty lines between tries and in the end.</div></p>
+
+<h2>Examples</h2>
+
+<p>The greater-than symbol followed by space (<code class="java">&gt; </code>) represents the user input. Notice that it's not the part of the input.</p>
+
+<p><strong>Example 1</strong></p>
+
+<pre><code class="language-no-highlight">H A N G M A N
+
+------
+Input a letter: &gt; t
+
+--t---
+Input a letter: &gt; z
+No such letter in the word
+
+--t---
+Input a letter: &gt; t
+No improvements
+
+--t---
+Input a letter: &gt; t
+No improvements
+
+--t---
+Input a letter: &gt; y
+
+-yt---
+Input a letter: &gt; x
+No such letter in the word
+
+-yt---
+Input a letter: &gt; y
+No improvements
+
+-yt---
+Input a letter: &gt; p
+
+pyt---
+Input a letter: &gt; p
+No improvements
+
+pyt---
+Input a letter: &gt; q
+No such letter in the word
+
+pyt---
+Input a letter: &gt; p
+No improvements
+You are hanged!</code></pre>
+
+<p><strong>Example 2</strong></p>
+
+<pre><code class="language-no-highlight">H A N G M A N
+
+----
+Input a letter: &gt; j
+
+j---
+Input a letter: &gt; i
+No such letter in the word
+
+j---
+Input a letter: &gt; g
+No such letter in the word
+
+j---
+Input a letter: &gt; g
+No such letter in the word
+
+j---
+Input a letter: &gt; g
+No such letter in the word
+
+j---
+Input a letter: &gt; g
+No such letter in the word
+
+j---
+Input a letter: &gt; a
+
+ja-a
+Input a letter: &gt; v
+
+java
+You guessed the word!
+You survived!</code></pre>

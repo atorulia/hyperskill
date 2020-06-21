@@ -1,0 +1,163 @@
+type: edu
+custom_name: What's inside?
+files:
+- name: zookeeper/zookeeper.py
+  visible: true
+  text: "camel = r\"\"\"\nSwitching on camera from habitat with camels...\n ___.-''''-.\n\
+    /___  @    |\n',,,,.     |         _.'''''''._\n     '     |        /        \
+    \   \\\n     |     \\    _.-'             \\\n     |      '.-'               \
+    \   '-.\n     |                               ',\n     |                     \
+    \           '',\n      ',,-,                           ':;\n           ',,| ;,,\
+    \                 ,' ;;\n              ! ; !'',,,',',,,,'!  ;   ;:\n         \
+    \    : ;  ! !       ! ! ;  ;   :;\n             ; ;   ! !      ! !  ; ;   ;,\n\
+    \            ; ;    ! !     ! !   ; ;     \n            ; ;    ! !    ! !    \
+    \ ; ;\n           ;,,      !,!   !,!     ;,;\n           /_I      L_I   L_I  \
+    \   /_I\nYey, our little camel is sunbathing!\"\"\"\n\nlion = r\"\"\"\nSwitching\
+    \ on camera from habitat with lions...\n                                     \
+    \          ,w.\n                                             ,YWMMw  ,M  ,\n \
+    \                       _.---.._   __..---._.'MMMMMw,wMWmW,\n                \
+    \   _.-\"\"        '''           YP\"WMMMMMMMMMb,\n                .-' __.'  \
+    \                 .'     MMMMW^WMMMM;\n    _,        .'.-'\"; `,       /`    \
+    \ .--\"\"      :MMM[==MWMW^;\n ,mM^\"     ,-'.'   /   ;      ;      /   ,    \
+    \   MMMMb_wMW\"  @\\\n,MM:.    .'.-'   .'     ;     `\\    ;     `,     MMMMMMMW\
+    \ `\"=./`-,\nWMMm__,-'.'     /      _.\\      F'''-+,,   ;_,_.dMMMMMMMM[,_ / `=_}\n\
+    \"^MP__.-'    ,-' _.--\"\"   `-,   ;       \\  ; ;MMMMMMMMMMW^``; __|\n      \
+    \     /   .'            ; ;         )  )`{  \\ `\"^W^`,   \\  :\n          / \
+    \ .'             /  (       .'  /     Ww._     `.  `\"\n         /  Y,       \
+    \       `,  `-,=,_{   ;      MMMP`\"\"-,  `-._.-,\n        (--, )            \
+    \    `,_ / `) \\/\"\")      ^\"      `-, -;\"\\:\nThe lion is croaking!\"\"\"\n\
+    \ndeer = r\"\"\"\nSwitching on camera from habitat with deers...\n   /|      \
+    \ |\\\n`__\\\\       //__'\n   ||      ||\n \\__`\\     |'__/\n   `_\\\\   //_'\n\
+    \   _.,:---;,._\n   \\_:     :_/\n     |@. .@|\n     |     |\n     ,\\.-./ \\\n\
+    \     ;;`-'   `---__________-----.-.\n     ;;;                         \\_\\\n\
+    \     ';;;                         |\n      ;    |                      ;\n  \
+    \     \\   \\     \\        |      /\n        \\_, \\    /        \\     |\\\n\
+    \          |';|  |,,,,,,,,/ \\    \\ \\_\n          |  |  |           \\   / \
+    \  |\n          \\  \\  |           |  / \\  |\n           | || |           |\
+    \ |   | |\n           | || |           | |   | |\n           | || |          \
+    \ | |   | |\n           |_||_|           |_|   |_|\n          /_//_/         \
+    \  /_/   /_/\nOur 'Bambi' looks hungry. Let's go to feed it!\"\"\"\n\ngoose =\
+    \ r\"\"\"\nSwitching on camera from habitat with lovely goose...\n\n         \
+    \                           _\n                                ,-\"\" \"\".\n\
+    \                              ,'  ____  `.\n                            ,'  ,'\
+    \    `.  `._\n   (`.         _..--.._   ,'  ,'        \\    \\\n  (`-.\\    .-\"\
+    \"        \"\"'   /          (  d _b\n (`._  `-\"\" ,._             (        \
+    \    `-(   \\\n <_  `     (  <`<            \\              `-._\\\n  <`-    \
+    \   (__< <           :\n   (__        (_<_<          ;\n    `------------------------------------------\n\
+    This bird stares intently at you... (Maybe it's time to change the channel?)\"\
+    \"\"\n\nbat = r\"\"\"\nSwitching on camera from habitat with bats...\n_________________\
+    \               _________________\n ~-.              \\  |\\___/|  /         \
+    \     .-~\n     ~-.           \\ / o o \\ /           .-~\n        >         \
+    \  \\\\  W  //           <\n       /             /~---~\\             \\\n   \
+    \   /_            |       |            _\\\n         ~-.        |       |    \
+    \    .-~\n            ;        \\     /        i\n           /___      /\\   /\\\
+    \      ___\\\n                ~-. /  \\_/  \\ .-~\n                   V      \
+    \   V\nIt looks like this bat is fine.\"\"\"\n\nrabbit = r\"\"\"\nSwitching on\
+    \ camera from habitat with rabbits...\n         ,\n        /|      __\n      \
+    \ / |   ,-~ /\n      Y :|  //  /\n      | jj /( .^\n      >-\"~\"-v\"\n     /\
+    \       Y\n    jo  o    |\n   ( ~T~     j\n    >._-' _./\n   /   \"~\"  |\n  Y\
+    \     _,  |\n /| ;-\"~ _  l\n/ l/ ,-\"~    \\\n\\//\\/      .- \\\n Y        /\
+    \    Y \n l       I     !\n ]\\      _\\    /\"\\\n(\" ~----( ~   Y.  )\nIt seems\
+    \ there will be more rabbits soon!\"\"\"\n\n\n# write your code here\n"
+  learner_created: false
+- name: animals.py
+  visible: false
+  text: "camel = r\"\"\"\nSwitching on camera from habitat with camels...\n ___.-''''-.\n\
+    /___  @    |\n',,,,.     |         _.'''''''._\n     '     |        /        \
+    \   \\\n     |     \\    _.-'             \\\n     |      '.-'               \
+    \   '-.\n     |                               ',\n     |                     \
+    \           '',\n      ',,-,                           ':;\n           ',,| ;,,\
+    \                 ,' ;;\n              ! ; !'',,,',',,,,'!  ;   ;:\n         \
+    \    : ;  ! !       ! ! ;  ;   :;\n             ; ;   ! !      ! !  ; ;   ;,\n\
+    \            ; ;    ! !     ! !   ; ;     \n            ; ;    ! !    ! !    \
+    \ ; ;\n           ;,,      !,!   !,!     ;,;\n           /_I      L_I   L_I  \
+    \   /_I\nYey, our little camel is sunbathing!\"\"\"\n\nlion = r\"\"\"\nSwitching\
+    \ on camera from habitat with lions...\n                                     \
+    \          ,w.\n                                             ,YWMMw  ,M  ,\n \
+    \                       _.---.._   __..---._.'MMMMMw,wMWmW,\n                \
+    \   _.-\"\"        '''           YP\"WMMMMMMMMMb,\n                .-' __.'  \
+    \                 .'     MMMMW^WMMMM;\n    _,        .'.-'\"; `,       /`    \
+    \ .--\"\"      :MMM[==MWMW^;\n ,mM^\"     ,-'.'   /   ;      ;      /   ,    \
+    \   MMMMb_wMW\"  @\\\n,MM:.    .'.-'   .'     ;     `\\    ;     `,     MMMMMMMW\
+    \ `\"=./`-,\nWMMm__,-'.'     /      _.\\      F'''-+,,   ;_,_.dMMMMMMMM[,_ / `=_}\n\
+    \"^MP__.-'    ,-' _.--\"\"   `-,   ;       \\  ; ;MMMMMMMMMMW^``; __|\n      \
+    \     /   .'            ; ;         )  )`{  \\ `\"^W^`,   \\  :\n          / \
+    \ .'             /  (       .'  /     Ww._     `.  `\"\n         /  Y,       \
+    \       `,  `-,=,_{   ;      MMMP`\"\"-,  `-._.-,\n        (--, )            \
+    \    `,_ / `) \\/\"\")      ^\"      `-, -;\"\\:\nThe lion is croaking!\"\"\"\n\
+    \ndeer = r\"\"\"\nSwitching on camera from habitat with deers...\n   /|      \
+    \ |\\\n`__\\\\       //__'\n   ||      ||\n \\__`\\     |'__/\n   `_\\\\   //_'\n\
+    \   _.,:---;,._\n   \\_:     :_/\n     |@. .@|\n     |     |\n     ,\\.-./ \\\n\
+    \     ;;`-'   `---__________-----.-.\n     ;;;                         \\_\\\n\
+    \     ';;;                         |\n      ;    |                      ;\n  \
+    \     \\   \\     \\        |      /\n        \\_, \\    /        \\     |\\\n\
+    \          |';|  |,,,,,,,,/ \\    \\ \\_\n          |  |  |           \\   / \
+    \  |\n          \\  \\  |           |  / \\  |\n           | || |           |\
+    \ |   | |\n           | || |           | |   | |\n           | || |          \
+    \ | |   | |\n           |_||_|           |_|   |_|\n          /_//_/         \
+    \  /_/   /_/\nOur 'Bambi' looks hungry. Let's go to feed it!\"\"\"\n\ngoose =\
+    \ r\"\"\"\nSwitching on camera from habitat with lovely goose...\n\n         \
+    \                           _\n                                ,-\"\" \"\".\n\
+    \                              ,'  ____  `.\n                            ,'  ,'\
+    \    `.  `._\n   (`.         _..--.._   ,'  ,'        \\    \\\n  (`-.\\    .-\"\
+    \"        \"\"'   /          (  d _b\n (`._  `-\"\" ,._             (        \
+    \    `-(   \\\n <_  `     (  <`<            \\              `-._\\\n  <`-    \
+    \   (__< <           :\n   (__        (_<_<          ;\n    `------------------------------------------\n\
+    This bird stares intently at you... (Maybe it's time to change the channel?)\"\
+    \"\"\n\nbat = r\"\"\"\nSwitching on camera from habitat with bats...\n_________________\
+    \               _________________\n ~-.              \\  |\\___/|  /         \
+    \     .-~\n     ~-.           \\ / o o \\ /           .-~\n        >         \
+    \  \\\\  W  //           <\n       /             /~---~\\             \\\n   \
+    \   /_            |       |            _\\\n         ~-.        |       |    \
+    \    .-~\n            ;        \\     /        i\n           /___      /\\   /\\\
+    \      ___\\\n                ~-. /  \\_/  \\ .-~\n                   V      \
+    \   V\nIt looks like this bat is fine.\"\"\"\n\nrabbit = r\"\"\"\nSwitching on\
+    \ camera from habitat with rabbits...\n         ,\n        /|      __\n      \
+    \ / |   ,-~ /\n      Y :|  //  /\n      | jj /( .^\n      >-\"~\"-v\"\n     /\
+    \       Y\n    jo  o    |\n   ( ~T~     j\n    >._-' _./\n   /   \"~\"  |\n  Y\
+    \     _,  |\n /| ;-\"~ _  l\n/ l/ ,-\"~    \\\n\\//\\/      .- \\\n Y        /\
+    \    Y \n l       I     !\n ]\\      _\\    /\"\\\n(\" ~----( ~   Y.  )\nIt seems\
+    \ there will be more rabbits soon!\"\"\"\n"
+  learner_created: false
+- name: tests.py
+  visible: false
+  text: |
+    from hstest.stage_test import StageTest
+    from hstest.test_case import TestCase
+    from hstest.check_result import CheckResult
+    from animals import *
+
+    CheckResult.correct = lambda: CheckResult(True, '')
+    CheckResult.wrong = lambda feedback: CheckResult(False, feedback)
+
+    animal_index = {
+        '0': (camel, 'camel'),
+        '1': (lion, 'lion'),
+        '2': (deer, 'deer'),
+        '3': (goose, 'goose'),
+        '4': (bat, 'bat'),
+        '5': (rabbit, 'rabbit')
+    }
+
+    the_end_message = '---\nThe end of the program. To check another habitat restart the watcher please.'
+
+
+    class Zookeeper(StageTest):
+        def generate(self):
+            tests = [TestCase(stdin=index, attach=(index, animal_index[index])) for index in animal_index]
+            return tests
+
+        def check(self, reply, attach):
+            if attach[1][0].strip() not in reply.strip():
+                return CheckResult.wrong(f'There should be a {attach[1][1]} in aviary number {attach[0]}')
+            if the_end_message not in reply.strip():
+                return CheckResult.wrong('You should output the message about the end of the program!')
+            return CheckResult.correct()
+
+
+    if __name__ == '__main__':
+        Zookeeper('zookeeper.zookeeper').run_tests()
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/98/stages/541/implement
+status: Solved
+record: 2

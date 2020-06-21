@@ -1,0 +1,81 @@
+<h2>Description</h2>
+
+<p>We're almost done!</p>
+
+<p>Let's add more flavor to the game by adding a suggestion to replay after the current game session ends.</p>
+
+<h2>Objectives</h2>
+
+<ol>
+	<li>The game starts with a menu where a player can choose to either play or exit.</li>
+	<li>Print <code class="java">Type "play" to play the game, "exit" to quit:</code> and ask again if the player inputs something else.</li>
+	<li>If the user chooses to play, the game starts.</li>
+</ol>
+
+<p><div class="alert alert-warning">Please, make sure that your program's output formatting precisely follows the example output formatting. Pay attention to the empty lines between tries and in the end.</div></p>
+
+<h2>Example</h2>
+
+<p>The greater-than symbol followed by space (<code class="java">&gt; </code>) represents the user input. Notice that it's not the part of the input.</p>
+
+<pre><code class="language-no-highlight">H A N G M A N
+Type "play" to play the game, "exit" to quit: &gt; play
+
+----------
+Input a letter: &gt; a
+
+-a-a------
+Input a letter: &gt; i
+
+-a-a---i--
+Input a letter: &gt; o
+No such letter in the word
+
+-a-a---i--
+Input a letter: &gt; o
+You already typed this letter
+
+-a-a---i--
+Input a letter: &gt; p
+
+-a-a---ip-
+Input a letter: &gt; p
+You already typed this letter
+
+-a-a---ip-
+Input a letter: &gt; h
+No such letter in the word
+
+-a-a---ip-
+Input a letter: &gt; k
+No such letter in the word
+
+-a-a---ip-
+Input a letter: &gt; a
+You already typed this letter
+
+-a-a---ip-
+Input a letter: &gt; z
+No such letter in the word
+
+-a-a---ipt
+Input a letter: &gt; t
+
+-a-a---ipt
+Input a letter: &gt; x
+No such letter in the word
+
+-a-a---ipt
+Input a letter: &gt; b
+No such letter in the word
+
+-a-a---ipt
+Input a letter: &gt; d
+No such letter in the word
+
+-a-a---ipt
+Input a letter: &gt; w
+No such letter in the word
+You are hanged!
+
+Type "play" to play the game, "exit" to quit: &gt; exit</code></pre>

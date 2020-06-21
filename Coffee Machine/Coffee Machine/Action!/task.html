@@ -1,0 +1,101 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Let's simulate an actual coffee machine! What do we need for that? This coffee machine will have a limited supply of water, milk, coffee beans, and disposable cups. Also, it will calculate how much money it gets for selling coffee.</p>
+
+<p>There are several options for the coffee machine we want you to implement: first, it should sell coffee. It can make different types of coffee: espresso, latte, and cappuccino. Of course, each variety requires a different amount of supplies, however, in any case, you will need only one disposable cup for a drink. Second, the coffee machine must get replenished by a special worker. Third, another special worker should be able to take out money from the coffee machine.</p>
+
+<h2 style="text-align: center;">Objectives</h2>
+
+<p>Write a program that offers to buy one cup of coffee or to fill the supplies or to take its money out. Note that the program is supposed to do one of the mentioned actions at a time. It should also calculate how many ingredients and money have left. Display the number of supplies before and after purchase.</p>
+
+<ol>
+	<li>First, your program reads one option from the standard input, which can be <code class="java">"buy"</code>, <code class="java">"fill"</code>, <code class="java">"take"</code>. If a user wants to buy some coffee, the input is <code class="java">"buy"</code>. If a special worker thinks that it is time to fill out all the supplies for the coffee machine, the input line will be <code class="java">"fill"</code>. If another special worker decides that it is time to take out the money from the coffee machine, you'll get the input <code class="java">"take"</code>.</li>
+	<li>If the user writes <code class="java">"buy"</code> then they must choose one of three types of coffee that the coffee machine can make: espresso, latte, or cappuccino.
+	<ul>
+		<li>For one espresso, the coffee machine needs <em>250 ml</em> of water and <em>16 g</em> of coffee beans. It costs <em>$4</em>.</li>
+		<li>For a latte, the coffee machine needs <em>350 ml</em> of water, <em>75 ml</em> of milk, and <em>20 g</em> of coffee beans. It costs <em>$7</em>.</li>
+		<li>And for a cappuccino, the coffee machine needs <em>200 ml</em> of water, <em>100 ml</em> of milk, and <em>12 g</em> of coffee. It costs <em>$6</em>.</li>
+	</ul>
+	</li>
+	<li>If the user writes <code class="java">"fill"</code>, the program should ask them how much water, milk, coffee and how many disposable cups they want to add into the coffee machine.</li>
+	<li>If the user writes <code class="java">"take"</code> the program should give all the money that it earned from selling coffee.</li>
+</ol>
+
+<p>At the moment, the coffee machine has <em>$550</em>, <em>400 ml</em> of water, <em>540 ml</em> of milk, <em>120 g</em> of coffee beans, and <em>9</em> disposable cups.</p>
+
+<p><div class="alert alert-primary">To sum up, your program should print the coffee machine's state, process one query from the user, as well as print the coffee machine's state after that. Try to use functions for implementing every action that the coffee machine can do.</div></p>
+
+<h2 style="text-align: center;">Examples</h2>
+
+<p>An espresso should be as number <em>1</em> in the list, a latte as number <em>2</em> and a cappuccino as number <em>3</em>.<br>
+Options are named as <code class="java">"buy"</code>, <code class="java">"fill"</code>, <code class="java">"take"</code>.</p>
+
+<p>The greater-than symbol followed by space (<code class="java">&gt; </code>) represents the user input. Notice that it's not the part of the input.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<pre><code class="language-no-highlight">The coffee machine has:
+400 of water
+540 of milk
+120 of coffee beans
+9 of disposable cups
+550 of money
+
+Write action (buy, fill, take):
+&gt; buy
+What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:
+&gt; 3
+
+The coffee machine has:
+200 of water
+440 of milk
+108 of coffee beans
+8 of disposable cups
+556 of money</code></pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><code class="language-no-highlight">The coffee machine has:
+400 of water
+540 of milk
+120 of coffee beans
+9 of disposable cups
+550 of money
+
+Write action (buy, fill, take):
+&gt; fill
+Write how many ml of water do you want to add:
+&gt; 2000
+Write how many ml of milk do you want to add:
+&gt; 500
+Write how many grams of coffee beans do you want to add:
+&gt; 100
+Write how many disposable cups of coffee do you want to add:
+&gt; 10
+
+The coffee machine has:
+2400 of water
+1040 of milk
+220 of coffee beans
+19 of disposable cups
+550 of money</code></pre>
+
+<p><strong>Example 3:</strong></p>
+
+<pre><code class="language-no-highlight">The coffee machine has:
+400 of water
+540 of milk
+120 of coffee beans
+9 of disposable cups
+550 of money
+
+Write action (buy, fill, take):
+&gt; take
+I gave you $550
+
+The coffee machine has:
+400 of water
+540 of milk
+120 of coffee beans
+9 of disposable cups
+0 of money</code></pre>

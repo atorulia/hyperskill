@@ -1,0 +1,11 @@
+type: framework
+content:
+- Hello, Hangman
+- I want to play a game
+- Make your choice
+- Help is on the way
+- Keep trying
+- The value of life
+- Error!
+- Menu, please
+current_task: 7
