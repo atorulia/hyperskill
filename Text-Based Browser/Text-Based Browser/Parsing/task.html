@@ -1,0 +1,54 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Now it is important for us to bring the resulting "text" to a form that is understandable to the user.</p>
+
+<p>If you don’t know what HTML is, here's a short explanation. When working on the previous task you could see a lot of <code class="java">&lt;div&gt;</code>, <code class="java">&lt;script&gt;</code> or <code class="java">&lt;p&gt;</code> “words” on the displayed web page. These are called <strong>tags</strong>. Browsers need tags to know how exactly to show the page. For example, there could be headers that look different from the rest of the text. Also, there could be links; they could be blue, and the cursor could look like a pointing finger when it's on the link. To let the browser know where the links are, where an image should be and so on, tags are used.</p>
+
+<p>Tags are necessary for the browser but aren’t useful for users. Most tags are paired. For example: <code class="java">&lt;p&gt;Some text&lt;/p&gt;</code>, where <code class="java">&lt;p&gt;</code> is an opening tag and <code class="java">&lt;/p&gt;</code> is a closing tag. You need to show only “<code class="java">Some text</code>” without <code class="java">&lt;p&gt;</code> and <code class="java">&lt;/p&gt;</code> on a web page.</p>
+
+<p>Each tag has its own purpose: <code class="java">&lt;p&gt;</code> for text, <code class="java">&lt;h1&gt; &lt;h2&gt; … &lt;h6&gt;</code> for headers, <code class="java">&lt;a&gt;</code> for links, <code class="java">&lt;ul&gt; &lt;ol&gt; &lt;li&gt;</code> for lists.</p>
+
+<p> </p>
+
+<h2 style="text-align: center;">Objectives</h2>
+
+<p>At this stage, you need to cut all content outside of these tags and output what remains. No more <code class="java">&lt;div&gt;, &lt;script&gt;, &lt;p&gt;</code> and so on, just text! You need to show only the content of a limited list of tags (<code class="java">&lt;p&gt;</code>, headers, <code class="java">&lt;a&gt;</code> and <code class="java">&lt;ul&gt;</code>, <code class="java">&lt;ol&gt;</code>, <code class="java">&lt;li&gt;</code>) without the tags themselves.</p>
+
+<p>Use <code class="java">beautifulsoup4</code> library for solving this, it is installed in your project already. Feel free to get curious and browse through some more information about <a target="_blank" href="https://www.dataquest.io/blog/web-scraping-tutorial-python/" rel="noopener noreferrer nofollow">parsing</a>!</p>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p>The greater-than symbol followed by space (<code class="java">&gt; </code>) represents the user input. Notice that it's not the part of the input.</p>
+
+<pre><code class="language-no-highlight">&gt; python browser.py dir-for-files
+&gt; docs.python.org
+index
+modules
+Python
+Documentation
+Python 3.7.4 documentation
+Welcome! This is the documentation for Python 3.7.4.
+Parts of the documentation:
+What's new in Python 3.7? or all "What's new" documents since 2.0
+Tutorial start here
+Library Reference keep this under your pillow
+Language Reference describes syntax and language elements
+Python Setup and Usage how to use Python on different platforms
+Python HOWTOs in-depth documents on specific topics
+Installing Python Modules installing from the Python Package Index &amp; other sources
+Distributing Python Modules publishing modules for installation by others
+Extending and Embedding tutorial for C/C++ programmers
+Python/C API reference for C/C++ programmers
+FAQs frequently asked questions (with answers!)
+Indices and tables:
+Global Module Index quick access to all modules
+General Index all functions, classes, terms
+Glossary the most important terms explained
+Search page search this documentation
+Complete Table of Contents lists all sections and subsections
+Meta information:
+Reporting bugs
+About the documentation
+History and License of Python
+Copyright
+&gt; exit</code></pre>

@@ -1,0 +1,214 @@
+type: edu
+custom_name: stage6
+files:
+- name: tests.py
+  visible: false
+  text: |
+    from hstest.stage_test import StageTest
+    from hstest.test_case import TestCase
+    from hstest.check_result import CheckResult
+
+    import os
+    import shutil
+
+    from colorama import Fore
+
+    import sys
+    if sys.platform.startswith("win"):
+        import _locale
+        # pylint: disable=protected-access
+        _locale._getdefaultlocale = (lambda *args: ['en_US', 'utf8'])
+
+    CheckResult.correct = lambda: CheckResult(True, '')
+    CheckResult.wrong = lambda feedback: CheckResult(False, feedback)
+
+
+    class TextBasedBrowserTest(StageTest):
+
+        def generate(self):
+
+            dir_for_files = os.path.join(os.curdir, 'tb_tabs')
+            return [
+                TestCase(
+                    stdin='2.python-requests.org\nexit',
+                    attach='requests',
+                    args=[dir_for_files]
+                ),
+                TestCase(
+                    stdin='en.wikipedia.org\nwiki\nexit',
+                    attach='Wikipedia',
+                    args=[dir_for_files]
+                ),
+                TestCase(
+                    stdin='nytimescom\nexit',
+                    args=[dir_for_files]
+                ),
+                TestCase(
+                    stdin='bloombergcom\nexit',
+                    args=[dir_for_files]
+                ),
+            ]
+
+        def _check_files(self, path_for_tabs: str, right_word: str) -> bool:
+            """
+            Helper which checks that browser saves visited url in files and
+            provides access to them.
+
+            :param path_for_tabs: directory which must contain saved tabs
+            :param right_word: Word-marker which must be in right tab
+            :return: True, if right_words is present in saved tab
+            """
+
+            path, dirs, filenames = next(os.walk(path_for_tabs))
+
+            for file in filenames:
+
+                with open(os.path.join(path_for_tabs, file), 'r', encoding='utf-8') as tab:
+                    content = tab.read()
+
+                    if '</p>' not in content and '</script>' not in content:
+                        if '</div>' not in content and right_word in content:
+                            return True
+
+            return False
+
+        def check(self, reply, attach):
+
+            # Incorrect URL
+            if attach is None:
+                if '<p>' in reply:
+                    return CheckResult.wrong('You haven\'t checked was URL correct')
+                else:
+                    return CheckResult.correct()
+
+            # Correct URL
+            if isinstance(attach, str):
+                right_word = attach
+
+                path_for_tabs = os.path.join(os.curdir, 'tb_tabs')
+
+                if not os.path.isdir(path_for_tabs):
+                    return CheckResult.wrong("There are no directory for tabs")
+
+                if not self._check_files(path_for_tabs, right_word):
+                    return CheckResult.wrong('There are no correct saved tabs')
+
+                try:
+                    shutil.rmtree(path_for_tabs)
+                except PermissionError:
+                    return CheckResult.wrong("Impossible to remove the directory for tabs. Perhaps you haven't closed some file?")
+
+
+                if not Fore.BLUE in reply:
+                    return CheckResult.wrong('There are no blue refs in output')
+
+                if '</p>' not in reply and '</div>' not in reply:
+                    if right_word in reply:
+                        return CheckResult.correct()
+
+                return CheckResult.wrong('You haven\'t parsed result of request')
+
+
+    TextBasedBrowserTest('browser.browser').run_tests()
+  learner_created: false
+- name: browser/browser.py
+  visible: true
+  text: "import os\nimport sys\nimport collections\nimport requests\nfrom bs4 import\
+    \ BeautifulSoup\nfrom colorama import init, Fore\ninit(autoreset=True)\n\nnytimes_com\
+    \ = '''\nThis New Liquid Is Magnetic, and Mesmerizing\nScientists have created\
+    \ “soft” magnets that can flow \nand change shape, and that could be a boon to\
+    \ medicine \nand robotics. (Source: New York Times)\nMost Wikipedia Profiles Are\
+    \ of Men. This Scientist Is Changing That.\nJessica Wade has added nearly 700\
+    \ Wikipedia biographies for\n important female and minority scientists in less\
+    \ than two \n years.\n'''\n\nbloomberg_com = '''\nThe Space Race: From Apollo\
+    \ 11 to Elon Musk\nIt's 50 years since the world was gripped by historic images\n\
+    \ of Apollo 11, and Neil Armstrong -- the first man to walk \n on the moon. It\
+    \ was the height of the Cold War, and the charts\n were filled with David Bowie's\
+    \ Space Oddity, and Creedence's \n Bad Moon Rising. The world is a very different\
+    \ place than \n it was 5 decades ago. But how has the space race changed since\n\
+    \ the summer of '69? (Source: Bloomberg)\nTwitter CEO Jack Dorsey Gives Talk at\
+    \ Apple Headquarters\nTwitter and Square Chief Executive Officer Jack Dorsey \n\
+    \ addressed Apple Inc. employees at the iPhone maker’s headquarters\n Tuesday,\
+    \ a signal of the strong ties between the Silicon Valley giants.\n'''\n\n\nclass\
+    \ Browser:\n    def __init__(self):\n        self.path = '.'\n        self.create_dir()\n\
+    \n    def create_dir(self):\n        if len(sys.argv) > 1:\n            # create\
+    \ directory\n            directory = sys.argv[1]\n            if not os.path.exists(directory):\n\
+    \                os.mkdir(directory)\n            self.path = directory\n\n  \
+    \  def open_page(self, url):\n        filename = self.path + '/' + url + '.txt'\n\
+    \        if not os.path.exists(filename):\n            print(\"Error: Incorrect\
+    \ URL\")\n        else:\n            with open(filename, encoding='utf-8', errors='ignore')\
+    \ as infile:\n                print(infile.read())\n\n    def get_page(self, url):\n\
+    \        if url.find('https://') < 0:\n            url = 'https://' + url\n  \
+    \      r = requests.get(url)\n        return r.text\n\n    def save_page(self,\
+    \ url, text):\n        index = url.rfind('.')\n        filename = self.path +\
+    \ '/' + url[0:index] + '.txt'\n        with open(filename, 'w+', encoding='utf-8',\
+    \ errors='ignore') as outfile:\n            outfile.write(text)\n        return\
+    \ url[0:index]\n\n    def parse_page(self, text):\n        text_list = []\n  \
+    \      tags = ['title', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'ul', 'ol',\
+    \ 'li']\n        soup = BeautifulSoup(text, 'html.parser')\n        for tag in\
+    \ soup.find_all(tags):\n            text = tag.get_text()\n            if tag.name\
+    \ == 'a':\n                text = Fore.BLUE + text\n            text_list.append(text)\n\
+    \        return '\\n'.join(text_list)\n\n    def run(self):\n        history =\
+    \ collections.deque()\n        previous_page = ''\n        current_page = ''\n\
+    \n        if current_page != previous_page:\n            history.append(previous_page)\n\
+    \            previous_page = current_page\n\n        while True:\n           \
+    \ url = input()\n            if url == \"exit\":\n                break\n    \
+    \        elif url == \"back\":\n                if history:\n                \
+    \    current_page = history.pop()\n                    self.open_page(current_page)\n\
+    \            elif url.rfind('.') < 0:\n                current_page = url\n  \
+    \              self.open_page(current_page)\n            else:\n             \
+    \   text = self.parse_page(self.get_page(url))\n                print(text)\n\
+    \                current_page = self.save_page(url, text)\n\nif __name__ == '__main__':\n\
+    \    browser = Browser()\n    browser.run()"
+  learner_created: true
+- name: browser/dir-for-files/docs.python.txt
+  visible: true
+  text: "3.8.4rc1 Documentation\nNavigation\n\n\nindex\n\nmodules |\n\nPython »\n\n\
+    3.8.4rc1 Documentation »\n    \n\n\n\n\n\n\n\n\n\n$('.inline-search').show(0);\n\
+    \         |\n    \n\n\nindex\n\e[34mindex\n\nmodules |\n\e[34mmodules\n\nPython\
+    \ »\n\e[34mPython\n\n3.8.4rc1 Documentation »\n    \n\e[34m3.8.4rc1 Documentation\n\
+    \n\n\n\n\n\n\n\n\n$('.inline-search').show(0);\n         |\n    \nPython 3.8.4rc1\
+    \ documentation\n\n  Welcome! This is the documentation for Python 3.8.4rc1.\n\
+    \  \nParts of the documentation:\nWhat's new in Python 3.8?\n or all \"What's\
+    \ new\" documents since 2.0\n\e[34mWhat's new in Python 3.8?\n\e[34mall \"What's\
+    \ new\" documents\nTutorial\nstart here\n\e[34mTutorial\nLibrary Reference\nkeep\
+    \ this under your pillow\n\e[34mLibrary Reference\nLanguage Reference\ndescribes\
+    \ syntax and language elements\n\e[34mLanguage Reference\nPython Setup and Usage\n\
+    how to use Python on different platforms\n\e[34mPython Setup and Usage\nPython\
+    \ HOWTOs\nin-depth documents on specific topics\n\e[34mPython HOWTOs\nInstalling\
+    \ Python Modules\ninstalling from the Python Package Index & other sources\n\e\
+    [34mInstalling Python Modules\nDistributing Python Modules\npublishing modules\
+    \ for installation by others\n\e[34mDistributing Python Modules\nExtending and\
+    \ Embedding\ntutorial for C/C++ programmers\n\e[34mExtending and Embedding\nPython/C\
+    \ API\nreference for C/C++ programmers\n\e[34mPython/C API\nFAQs\nfrequently asked\
+    \ questions (with answers!)\n\e[34mFAQs\nIndices and tables:\nGlobal Module Index\n\
+    quick access to all modules\n\e[34mGlobal Module Index\nGeneral Index\nall functions,\
+    \ classes, terms\n\e[34mGeneral Index\nGlossary\nthe most important terms explained\n\
+    \e[34mGlossary\nSearch page\nsearch this documentation\n\e[34mSearch page\nComplete\
+    \ Table of Contents\nlists all sections and subsections\n\e[34mComplete Table\
+    \ of Contents\nMeta information:\nReporting bugs\n\e[34mReporting bugs\nContributing\
+    \ to Docs\n\e[34mContributing to Docs\nAbout the documentation\n\e[34mAbout the\
+    \ documentation\nHistory and License of Python\n\e[34mHistory and License of Python\n\
+    Copyright\n\e[34mCopyright\nDownload\nDownload these documents\n\e[34mDownload\
+    \ these documents\nDocs by version\n\nPython 3.10 (in development)\nPython 3.9\
+    \ (pre-release)\nPython 3.8 (stable)\nPython 3.7 (security-fixes)\nPython 3.6\
+    \ (security-fixes)\nPython 3.5 (security-fixes)\nPython 2.7 (EOL)\nAll versions\n\
+    \nPython 3.10 (in development)\n\e[34mPython 3.10 (in development)\nPython 3.9\
+    \ (pre-release)\n\e[34mPython 3.9 (pre-release)\nPython 3.8 (stable)\n\e[34mPython\
+    \ 3.8 (stable)\nPython 3.7 (security-fixes)\n\e[34mPython 3.7 (security-fixes)\n\
+    Python 3.6 (security-fixes)\n\e[34mPython 3.6 (security-fixes)\nPython 3.5 (security-fixes)\n\
+    \e[34mPython 3.5 (security-fixes)\nPython 2.7 (EOL)\n\e[34mPython 2.7 (EOL)\n\
+    All versions\n\e[34mAll versions\nOther resources\n\nPEP Index\nBeginner's Guide\n\
+    Book List\nAudio/Visual Talks\nPython Developerâ\x80\x99s Guide\n\nPEP Index\n\
+    \e[34mPEP Index\nBeginner's Guide\n\e[34mBeginner's Guide\nBook List\n\e[34mBook\
+    \ List\nAudio/Visual Talks\n\e[34mAudio/Visual Talks\nPython Developerâ\x80\x99\
+    s Guide\n\e[34mPython Developerâ\x80\x99s Guide\nNavigation\n\n\nindex\n\nmodules\
+    \ |\n\nPython »\n\n3.8.4rc1 Documentation »\n    \n\n\n\n\n\n\n\n\n\n$('.inline-search').show(0);\n\
+    \         |\n    \n\n\nindex\n\e[34mindex\n\nmodules |\n\e[34mmodules\n\nPython\
+    \ »\n\e[34mPython\n\n3.8.4rc1 Documentation »\n    \n\e[34m3.8.4rc1 Documentation\n\
+    \n\n\n\n\n\n\n\n\n$('.inline-search').show(0);\n         |\n    \n\e[34mCopyright\n\
+    \e[34mPlease donate.\n\e[34mFound a bug\n\e[34mSphinx"
+  learner_created: true
+feedback_link: https://hyperskill.org/projects/79/stages/441/implement
+status: Solved
+record: -1

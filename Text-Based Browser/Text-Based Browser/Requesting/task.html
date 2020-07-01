@@ -1,0 +1,57 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>Now we should get closer to the browser with the address bar. At this stage, you need to forget about your hard-coded variables with sites and show your user some real pages. Make the browser request the real input URL and show the result. </p>
+
+<p>One of the simplest ways to do this is the Request library. It is already installed in your project, so you can use it. This library allows to get any web page via URL by one string. You can find this string in <a target="_blank" href="https://2.python-requests.org/en/master/user/quickstart/#response-content" rel="noopener noreferrer nofollow">Request documentation</a>, though it’s better to read the <a target="_blank" href="https://2.python-requests.org/en/master/user/quickstart" rel="noopener noreferrer nofollow">whole quick manual</a> to understand more.</p>
+
+<p>Sometimes, it’s going to be a challenge. You might find that you suddenly don't have permission to visit certain websites. That’s because of the User-agent. It’s just a string that all browsers use to mark the request, and they all have different user-agents. Frankly, browsers add a lot of additional information to the requests. All this info can be set using the request library. For this task, it's optional, but feel free to experiment.</p>
+
+<h2 style="text-align: center;">Objectives</h2>
+
+<p>Add new features to the browser:</p>
+
+<ol>
+	<li>So, your program should read the URL from input as before, but now show the real web page using the Request library.</li>
+	<li>Since the user can input the URL without <code class="java">https://</code> in the beginning, you need to append this string if it is not there.</li>
+</ol>
+
+<h2 style="text-align: center;">Example</h2>
+
+<p>The greater-than symbol followed by space (<code class="java">&gt; </code>) represents the user input. Notice that it's not the part of the input.</p>
+
+<pre><code class="language-no-highlight">&gt; python browser.py dir-for-files
+&gt; docs.python.org
+
+&lt;!DOCTYPE html&gt;
+
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;&lt;title&gt;3.7.4 Documentation&lt;/title&gt;
+    &lt;link rel="stylesheet" target="_blank" href="_static/pydoctheme.css" type="text/css" /&gt;
+    &lt;link rel="stylesheet" target="_blank" href="_static/pygments.css" type="text/css" /&gt;
+
+    &lt;script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="_static/jquery.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="_static/underscore.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="_static/doctools.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="_static/language_data.js"&gt;&lt;/script&gt;
+
+    &lt;script type="text/javascript" src="_static/sidebar.js"&gt;&lt;/script&gt;
+
+    &lt;link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Python 3.7.4 documentation"
+          target="_blank" href="_static/opensearch.xml"/&gt;
+    &lt;link rel="author" title="About these documents" target="_blank" href="about.html" /&gt;
+    &lt;link rel="index" title="Index" target="_blank" href="genindex.html" /&gt;
+    &lt;link rel="search" title="Search" target="_blank" href="search.html" /&gt;
+    &lt;link rel="copyright" title="Copyright" target="_blank" href="copyright.html" /&gt;
+    &lt;link rel="shortcut icon" type="image/png" target="_blank" href="_static/py.png" /&gt;
+    &lt;link rel="canonical" target="_blank" href="https://docs.python.org/3/index.html" /&gt;
+
+    &lt;script type="text/javascript" src="_static/copybutton.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="_static/switchers.js"&gt;&lt;/script&gt;
+
+   …  (More than 200 such terrifying strings)
+&gt; exit
+
+</code></pre>

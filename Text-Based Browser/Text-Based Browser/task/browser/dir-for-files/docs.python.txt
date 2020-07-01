@@ -1,0 +1,217 @@
+3.8.4rc1 Documentation
+Navigation
+
+
+index
+
+modules |
+
+Python »
+
+3.8.4rc1 Documentation »
+    
+
+
+
+
+
+
+
+
+
+$('.inline-search').show(0);
+         |
+    
+
+
+index
+[34mindex
+
+modules |
+[34mmodules
+
+Python »
+[34mPython
+
+3.8.4rc1 Documentation »
+    
+[34m3.8.4rc1 Documentation
+
+
+
+
+
+
+
+
+
+$('.inline-search').show(0);
+         |
+    
+Python 3.8.4rc1 documentation
+
+  Welcome! This is the documentation for Python 3.8.4rc1.
+  
+Parts of the documentation:
+What's new in Python 3.8?
+ or all "What's new" documents since 2.0
+[34mWhat's new in Python 3.8?
+[34mall "What's new" documents
+Tutorial
+start here
+[34mTutorial
+Library Reference
+keep this under your pillow
+[34mLibrary Reference
+Language Reference
+describes syntax and language elements
+[34mLanguage Reference
+Python Setup and Usage
+how to use Python on different platforms
+[34mPython Setup and Usage
+Python HOWTOs
+in-depth documents on specific topics
+[34mPython HOWTOs
+Installing Python Modules
+installing from the Python Package Index & other sources
+[34mInstalling Python Modules
+Distributing Python Modules
+publishing modules for installation by others
+[34mDistributing Python Modules
+Extending and Embedding
+tutorial for C/C++ programmers
+[34mExtending and Embedding
+Python/C API
+reference for C/C++ programmers
+[34mPython/C API
+FAQs
+frequently asked questions (with answers!)
+[34mFAQs
+Indices and tables:
+Global Module Index
+quick access to all modules
+[34mGlobal Module Index
+General Index
+all functions, classes, terms
+[34mGeneral Index
+Glossary
+the most important terms explained
+[34mGlossary
+Search page
+search this documentation
+[34mSearch page
+Complete Table of Contents
+lists all sections and subsections
+[34mComplete Table of Contents
+Meta information:
+Reporting bugs
+[34mReporting bugs
+Contributing to Docs
+[34mContributing to Docs
+About the documentation
+[34mAbout the documentation
+History and License of Python
+[34mHistory and License of Python
+Copyright
+[34mCopyright
+Download
+Download these documents
+[34mDownload these documents
+Docs by version
+
+Python 3.10 (in development)
+Python 3.9 (pre-release)
+Python 3.8 (stable)
+Python 3.7 (security-fixes)
+Python 3.6 (security-fixes)
+Python 3.5 (security-fixes)
+Python 2.7 (EOL)
+All versions
+
+Python 3.10 (in development)
+[34mPython 3.10 (in development)
+Python 3.9 (pre-release)
+[34mPython 3.9 (pre-release)
+Python 3.8 (stable)
+[34mPython 3.8 (stable)
+Python 3.7 (security-fixes)
+[34mPython 3.7 (security-fixes)
+Python 3.6 (security-fixes)
+[34mPython 3.6 (security-fixes)
+Python 3.5 (security-fixes)
+[34mPython 3.5 (security-fixes)
+Python 2.7 (EOL)
+[34mPython 2.7 (EOL)
+All versions
+[34mAll versions
+Other resources
+
+PEP Index
+Beginner's Guide
+Book List
+Audio/Visual Talks
+Python Developerâs Guide
+
+PEP Index
+[34mPEP Index
+Beginner's Guide
+[34mBeginner's Guide
+Book List
+[34mBook List
+Audio/Visual Talks
+[34mAudio/Visual Talks
+Python Developerâs Guide
+[34mPython Developerâs Guide
+Navigation
+
+
+index
+
+modules |
+
+Python »
+
+3.8.4rc1 Documentation »
+    
+
+
+
+
+
+
+
+
+
+$('.inline-search').show(0);
+         |
+    
+
+
+index
+[34mindex
+
+modules |
+[34mmodules
+
+Python »
+[34mPython
+
+3.8.4rc1 Documentation »
+    
+[34m3.8.4rc1 Documentation
+
+
+
+
+
+
+
+
+
+$('.inline-search').show(0);
+         |
+    
+[34mCopyright
+[34mPlease donate.
+[34mFound a bug
+[34mSphinx

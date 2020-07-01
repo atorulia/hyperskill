@@ -1,0 +1,161 @@
+type: edu
+custom_name: stage4
+files:
+- name: tests.py
+  visible: false
+  text: |
+    from hstest.stage_test import StageTest
+    from hstest.test_case import TestCase
+    from hstest.check_result import CheckResult
+
+    import os
+    import shutil
+
+    import sys
+    if sys.platform.startswith("win"):
+        import _locale
+        # pylint: disable=protected-access
+        _locale._getdefaultlocale = (lambda *args: ['en_US', 'utf8'])
+
+    CheckResult.correct = lambda: CheckResult(True, '')
+    CheckResult.wrong = lambda feedback: CheckResult(False, feedback)
+
+
+    class TextBasedBrowserTest(StageTest):
+
+        def generate(self):
+
+            dir_for_files = 'tb_tabs'
+            return [
+                TestCase(
+                    stdin='bloomberg.com\nbloomberg\nexit',
+                    attach='Bloomberg',
+                    args=[dir_for_files]
+                ),
+                TestCase(
+                    stdin='nytimes.com\nnytimes\nexit',
+                    attach='The New York Times',
+                    args=[dir_for_files]
+                ),
+                TestCase(
+                    stdin='nytimescom\nexit',
+                    args=[dir_for_files]
+                ),
+                TestCase(
+                    stdin='bloombergcom\nexit',
+                    args=[dir_for_files]
+                ),
+            ]
+
+        def _check_files(self, path_for_tabs: str, right_word: str) -> bool:
+            """
+            Helper which checks that browser saves visited url in files and
+            provides access to them.
+
+            :param path_for_tabs: directory which must contain saved tabs
+            :param right_word: Word-marker which must be in right tab
+            :return: True, if right_words is present in saved tab
+            """
+
+            path, dirs, filenames = next(os.walk(path_for_tabs))
+
+            for file in filenames:
+                print("file: {}".format(file))
+                with open(os.path.join(path_for_tabs, file), 'r', encoding='utf-8') as tab:
+                    content = tab.read()
+                    print(content)
+                    if 'html' in content and right_word in content:
+                        return True
+
+            return False
+
+        def check(self, reply, attach):
+
+            # Incorrect URL
+            if attach is None:
+                if '<p>' in reply:
+                    return CheckResult.wrong('You haven\'t checked was URL correct')
+                else:
+                    return CheckResult.correct()
+
+            # Correct URL
+            if isinstance(attach, str):
+                right_word = attach
+
+                path_for_tabs = os.path.join(os.curdir, 'tb_tabs')
+
+                if not os.path.isdir(path_for_tabs):
+                    return CheckResult.wrong("There are no directory for tabs")
+
+                if not self._check_files(path_for_tabs, right_word):
+                    return CheckResult.wrong('There are no correct saved tabs')
+
+                try:
+                    shutil.rmtree(path_for_tabs)
+                except PermissionError:
+                    return CheckResult.wrong("Impossible to remove the directory for tabs. Perhaps you haven't closed some file?")
+
+                if '<body' in reply and right_word in reply:
+                    return CheckResult.correct()
+
+                return CheckResult.wrong('You haven\'t print result of request')
+
+
+    TextBasedBrowserTest('browser.browser').run_tests()
+  learner_created: false
+- name: browser/browser.py
+  visible: true
+  text: "import sys, getopt\nfrom pathlib import Path\nimport os\nfrom os import listdir\n\
+    from os.path import isfile, join\n\nnytimes = '''\nThis New Liquid Is Magnetic,\
+    \ and Mesmerizing\n\nScientists have created “soft” magnets that can flow \nand\
+    \ change shape, and that could be a boon to medicine \nand robotics. (Source:\
+    \ New York Times)\n\n\nMost Wikipedia Profiles Are of Men. This Scientist Is Changing\
+    \ That.\n\nJessica Wade has added nearly 700 Wikipedia biographies for\n important\
+    \ female and minority scientists in less than two \n years.\n\n'''\n\nbloomberg\
+    \ = '''\nThe Space Race: From Apollo 11 to Elon Musk\n\nIt's 50 years since the\
+    \ world was gripped by historic images\n of Apollo 11, and Neil Armstrong -- the\
+    \ first man to walk \n on the moon. It was the height of the Cold War, and the\
+    \ charts\n were filled with David Bowie's Space Oddity, and Creedence's \n Bad\
+    \ Moon Rising. The world is a very different place than \n it was 5 decades ago.\
+    \ But how has the space race changed since\n the summer of '69? (Source: Bloomberg)\n\
+    \n\nTwitter CEO Jack Dorsey Gives Talk at Apple Headquarters\n\nTwitter and Square\
+    \ Chief Executive Officer Jack Dorsey \n addressed Apple Inc. employees at the\
+    \ iPhone maker’s headquarters\n Tuesday, a signal of the strong ties between the\
+    \ Silicon Valley giants.\n'''\n\ndef is_correct(site_url) -> bool:\n    if site_url.count('.')\
+    \ == 0:\n        return False\n    else:\n        return True\n\n\nclass Stack:\n\
+    \    def __init__(self):\n        self.stack = []\n\n    def pop(self) -> str:\n\
+    \        if not self.stack:\n            return ''\n        else:\n          \
+    \  self.stack.pop()\n            return self.stack.pop()\n\n    def add(self,\
+    \ value):\n        self.stack.append(value)\n\n\nclass Browser:\n    def __init__(self):\n\
+    \        self.dir_path = \"\"\n        self.site_list = []\n        self.stack\
+    \ = Stack()\n\n    def create_dir(self):\n        if not os.path.exists(self.dir_path):\n\
+    \            Path(self.dir_path).mkdir(parents=True, exist_ok=True)\n\n    def\
+    \ init_site_list(self):\n        self.site_list = [f for f in listdir(self.dir_path)\
+    \ if isfile(join(self.dir_path, f))]\n\n    def get_opt(self):\n        if len(sys.argv)\
+    \ > 1:\n            self.dir_path = sys.argv[1]\n            self.create_dir()\n\
+    \n    def save_to_dir(self, file_name, data):\n        f = open(self.dir_path\
+    \ + \"/\" + file_name, \"w+\")\n        f.write(data)\n\n    def get_page(self,\
+    \ path):\n        with open(self.dir_path + '/' + path) as f:\n            for\
+    \ line in f:\n                print(line)\n\n    def run(self):\n        self.get_opt()\n\
+    \        self.init_site_list()\n\n        while True:\n            command = input()\n\
+    \            short_url = command\n            if command == \"exit\":\n      \
+    \          break\n            elif command == \"back\":\n                self.get_page(self.stack.pop())\n\
+    \            elif is_correct(command):\n                position = short_url.rfind('.')\n\
+    \                if position >= 0:\n                    short_url = short_url[:position]\n\
+    \                self.site_list.append(short_url)\n                if short_url\
+    \ in set(self.site_list):\n                    if short_url == 'bloomberg':\n\
+    \                        self.save_to_dir(short_url, bloomberg)\n            \
+    \            self.stack.add(short_url)\n                        self.get_page(short_url)\n\
+    \                    elif short_url == 'nytimes':\n                        self.save_to_dir(short_url,\
+    \ nytimes)\n                        self.stack.add(short_url)\n              \
+    \          self.get_page(short_url)\n                    else:\n             \
+    \           print(\"Error: Incorrect URL\")\n            else:\n             \
+    \   print(\"Error: Incorrect URL\")\n\n\nif __name__ == \"__main__\":\n    browser\
+    \ = Browser()\n    browser.run()\n"
+  learner_created: true
+- name: browser/dir-for-files/docs.python
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/projects/79/stages/439/implement
+status: Solved
+record: 4
