@@ -1,0 +1,111 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>It is time to learn to see the result (or lack thereof) of the game. In this stage, you should analyze a Tic-Tac-Toe field.  </p>
+
+<p>Is the winner already known or is the game not over yet?  Is it a draw or an impossible combination of moves?  Let's find out!</p>
+
+<p><strong>Note.</strong> In this stage either 'X' or 'O' can start the game.</p>
+
+<h2 style="text-align: center;">Objectives</h2>
+
+<p>In this stage, your program should:</p>
+
+<ol>
+	<li> Fill the field from the input and print it as in the previous stage.</li>
+	<li> Find the state in which the game is at the moment and print it. Possible states:</li>
+</ol>
+
+<ul>
+	<li><code class="java">"Game not finished"</code> - when no side has a three in a row but the field has empty cells;</li>
+	<li><code class="java">"Draw"</code> - when no side has a three in a row and the field has no empty cells;</li>
+	<li><code class="java">"X wins"</code> - when the field has three X in a row;</li>
+	<li><code class="java">"O wins"</code> - when the field has three O in a row;</li>
+	<li><code class="java">"Impossible"</code> - when the field has three X in a row as well as three O in a row. Or the field has a lot more X's that O's or vice versa (if the difference is 2 or more, should be 1 or 0). For this stage, consider that the game can be started both as X's or as O's. </li>
+</ul>
+
+<p>Also, you can use <code class="java">' '</code> or <code class="java">'_'</code> to print empty cells - it's up to you.</p>
+
+<h2 style="text-align: center;">Examples</h2>
+
+<p>The examples below show outputs for some predefined states. Your program should work in the same way. <br>
+The greater-than symbol followed by space (<code class="java">&gt; </code>) represents the user input. Notice that it's not the part of the input.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<pre><code class="language-no-highlight">Enter cells: &gt; XXXOO__O_
+---------
+| X X X |
+| O O _ |
+| _ O _ |
+---------
+X wins</code></pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><code class="language-no-highlight">Enter cells: &gt; XOXOXOXXO
+---------
+| X O X |
+| O X O |
+| X X O |
+---------
+X wins</code></pre>
+
+<p><strong>Example 3:</strong></p>
+
+<pre><code class="language-no-highlight">Enter cells: &gt; XOOOXOXXO
+---------
+| X O O |
+| O X O |
+| X X O |
+---------
+O wins</code></pre>
+
+<p><strong>Example 4:</strong></p>
+
+<pre><code class="language-no-highlight">Enter cells: &gt; XOXOOXXXO
+---------
+| X O X |
+| O O X |
+| X X O |
+---------
+Draw</code></pre>
+
+<p><strong>Example 5:</strong></p>
+
+<pre><code class="language-no-highlight">Enter cells: &gt; XO_OOX_X_
+---------
+| X O   |
+| O O X |
+|   X   |
+---------
+Game not finished</code></pre>
+
+<p><strong>Example 6:</strong></p>
+
+<pre><code class="language-no-highlight">Enter cells: &gt; XO_XO_XOX
+---------
+| X O _ |
+| X O _ |
+| X O X |
+---------
+Impossible</code></pre>
+
+<p><strong>Example 7:</strong></p>
+
+<pre><code class="language-no-highlight">Enter cells: &gt; _O_X__X_X
+---------
+|   O   |
+| X     |
+| X   X |
+---------
+Impossible</code></pre>
+
+<p><strong>Example 8:</strong></p>
+
+<pre><code class="language-no-highlight">Enter cells: &gt; _OOOO_X_X
+---------
+|   O O |
+| O O   |
+| X   X |
+---------
+Impossible</code></pre>

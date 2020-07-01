@@ -1,0 +1,44 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>However, our game should show the field in an "intermediate" states too. Let's try to visualize different combinations that the user will determine from the input. It is also important to think about the interface and set boundaries for our field.</p>
+
+<h2 style="text-align: center;">Objectives</h2>
+
+<p>In this stage, you should write a program that:</p>
+
+<ol>
+	<li>Reads 9 symbols from the input and writes an appropriate 3x3 field. Elements of the field can contain only <code class="java">'X'</code>, <code class="java">'O'</code> and <code class="java">'_'</code> symbols.</li>
+	<li> Sets the field to a specific format, i.e. field should start and end with <code class="java">---------</code>, all lines in between should start and end with <code class="java">'|'</code> symbol and everything in the middle should be separated with a single space.  </li>
+</ol>
+
+<h2 style="text-align: center;">Examples</h2>
+
+<p>Examples below show how your output should look. <br>
+The greater-than symbol followed by space (<code class="java">&gt; </code>) represents the user input. Notice that it's not the part of the input.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<pre><code class="language-no-highlight">Enter cells: &gt; O_OXXO_XX
+---------
+| O _ O |
+| X X O |
+| _ X X |
+---------</code></pre>
+
+<p><strong>Example 2: </strong></p>
+
+<pre><code class="language-no-highlight">Enter cells: &gt; OXO__X_OX
+---------
+| O X O |
+| _ _ X |
+| _ O X |
+---------</code></pre>
+
+<p><strong>Example 3: </strong></p>
+
+<pre><code class="language-no-highlight">Enter cells: &gt; _XO__X___
+---------
+| _ X O |
+| _ _ X |
+| _ _ _ |
+---------</code></pre>
