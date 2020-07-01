@@ -1,0 +1,11 @@
+type: hyperskill
+title: Rock-Paper-Scissors
+language: English
+summary: If you’ve ever wanted to create games, this project will get you started!
+  In this project you will code a Rock-Paper-Scissors-Lizard-Spock game, a more advanced
+  version of Rock-Paper-Scissors, which can be played against the computer.<br/><br/>Learn
+  more at <a href="https://hyperskill.org">https://hyperskill.org/projects/78</a>
+programming_language: Python
+content:
+- Rock-Paper-Scissors
+mode: Study

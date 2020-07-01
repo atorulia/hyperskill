@@ -1,0 +1,46 @@
+<h2>Description</h2>
+
+<p>Wasn't that pretty cool?</p>
+
+<p>But the game is really short so far: nobody plays just a single shot of rock-paper-scissors. We need to do some literally unstoppable game for unstoppable players. Not literally unstoppable, of course: let's implement a way to stop your program.</p>
+
+<p>Improve your program so it would take an unlimited number of inputs until the user enters <code class="java">!exit</code>. After entering <code class="java">!exit</code> the program should print <code class="java">Bye!</code> and terminate. Also, let's try to handle invalid inputs: your program should be ready that there may be a typo in user's input, or that a user may just enter complete gibberish instead of a normal command. So, in case the input doesn't correspond to any known command (option name or <code class="java">!exit</code>), your program should output the line <code class="java">Invalid input</code></p>
+
+<h2>Objectives</h2>
+
+<p>Your program should:</p>
+
+<ol>
+	<li>Take an input from the user</li>
+	<li>If the input is <code class="java">!exit</code>, output <code class="java">Bye!</code> and stop the game</li>
+	<li>If the input is the name of the option, then:</li>
+	<li>Pick a random option</li>
+	<li>Output a line with the result of the game in the following format (<code class="java">&lt;option&gt;</code> is the name of the option chosen by the program):
+	<ul>
+		<li>Lose -&gt; <code class="java">Sorry, but computer chose &lt;option&gt;</code></li>
+		<li>Draw -&gt; <code class="java">There is a draw (&lt;option&gt;)</code></li>
+		<li>Win -&gt; <code class="java">Well done. Computer chose &lt;option&gt; and failed</code></li>
+	</ul>
+	</li>
+	<li>If the input corresponds to anything else, output <code class="java">Invalid input</code></li>
+	<li>Do it all over again</li>
+</ol>
+
+<h2>Example</h2>
+
+<p>The greater-than symbol followed by space (<code class="java">&gt; </code>) represents the user input. Notice that it's not the part of the input.</p>
+
+<pre><code class="language-no-highlight">&gt; rock
+Well done. Computer chose scissors and failed
+&gt; paper
+Well done. Computer chose rock and failed
+&gt; paper
+There is a draw (paper)
+&gt; scissors
+Sorry, but computer chose rock
+&gt; rokc
+Invalid input
+&gt; xit!
+Invalid input
+&gt; !exit
+Bye!</code></pre>
