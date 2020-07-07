@@ -1,0 +1,12 @@
+type: hyperskill
+title: Simple Banking System
+language: English
+summary: Everything goes digital these days, and so does money. Today, most people
+  have credit cards, which save us time, energy and nerves. From not having to carry
+  a wallet full of cash to consumer protection, cards make our lives easier in many
+  ways. In this project, you will develop a simple banking system with database.<br/><br/>Learn
+  more at <a href="https://hyperskill.org">https://hyperskill.org/projects/109</a>
+programming_language: Python
+content:
+- Simple Banking System
+mode: Study

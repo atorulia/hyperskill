@@ -1,0 +1,155 @@
+type: edu
+files:
+- name: tests.py
+  visible: false
+  text: |
+    from hstest.test_case import CheckResult
+    from hstest.stage_test import StageTest
+    from hstest.test_case import TestCase
+    from hstest.exceptions import WrongAnswerException
+    import random
+    import re
+
+    card_number = ''
+    pin = ''
+    are_all_inputs_read = False
+
+
+    def get_credentials(output: str):
+        number = re.findall(r'400000\d{10}', output, re.MULTILINE)
+        if not number:
+            raise WrongAnswerException('You are printing the card number incorrectly. '
+                                       'The card number should look like in the example: 400000DDDDDDDDDD, where D is a digit.')
+
+        PIN = re.findall(r'^\d{4}$', output, re.MULTILINE)
+        if not PIN:
+            raise WrongAnswerException('You are printing the card PIN incorrectly. '
+                                       'The PIN should look like in the example: DDDD, where D is a digit.')
+
+        return number[0], PIN[0]
+
+
+    def test_card_generation(output: str, value_to_return):
+        global card_number, pin, are_all_inputs_read
+        are_all_inputs_read = False
+        credentials = get_credentials(output)
+        card_number = credentials[0]
+        pin = credentials[1]
+        return value_to_return
+
+
+    def test_difference_between_generations(output: str, value_to_return):
+        global card_number, pin, are_all_inputs_read
+        credentials = get_credentials(output)
+        another_card_number = credentials[0]
+
+        if another_card_number == card_number:
+            return CheckResult.wrong('Your program generates two identical card numbers!')
+        are_all_inputs_read = True
+
+        return value_to_return
+
+
+    def test_sign_in_with_correct_credentials(output: str, value_to_return):
+        global card_number, pin
+        return '{}\n{}'.format(card_number, pin)
+
+
+    def test_output_after_correct_sign_in(output: str, value_to_return):
+        global are_all_inputs_read
+        are_all_inputs_read = True
+        if 'successfully' not in output.lower():
+            return CheckResult.wrong(
+                'There is no \'successfully\' in your output after signing in with correct credentials')
+        return value_to_return
+
+
+    def test_sign_in_with_wrong_pin(output: str, value_to_return):
+        global card_number, pin
+        wrong_pin = pin
+        while pin == wrong_pin:
+            wrong_pin = ''.join(list(map(str, random.sample(range(1, 10), 4))))
+        return '{}\n{}\n'.format(card_number, wrong_pin)
+
+
+    def test_output_after_wrong_pin(output: str, value_to_return):
+        global are_all_inputs_read
+        are_all_inputs_read = True
+        if 'wrong' not in output.lower():
+            return CheckResult.wrong(
+                'There is no \'wrong\' in your output after signing in with correct credentials')
+        return value_to_return
+
+
+    def test_sign_in_with_wrong_card_number(output: str, value_to_return):
+        global card_number, pin
+        wrong_card_number = card_number
+        while wrong_card_number == card_number:
+            temp = [4, 0, 0, 0, 0, 0]
+            for _ in range(10):
+                temp.append(random.randint(1, 9))
+            wrong_card_number = ''.join(list(map(str, temp)))
+        return '{}\n{}\n'.format(wrong_card_number, pin)
+
+
+    def test_output_after_wrong_card_number(output: str, value_to_return):
+        global are_all_inputs_read
+        are_all_inputs_read = True
+        if 'wrong' not in output.lower():
+            return CheckResult.wrong(
+                'There is no \'wrong\' in your output after signing in with correct credentials')
+        return value_to_return
+
+
+    class BankingSystem(StageTest):
+
+        def generate(self):
+            return [
+                TestCase(
+                    stdin=[
+                        '1',
+                        lambda output: test_card_generation(output, '1'),
+                        lambda output: test_difference_between_generations(output, '0')
+                    ]),
+                TestCase(
+                    stdin=[
+                        '1',
+                        lambda output: test_card_generation(output, '2'),
+                        lambda output: test_sign_in_with_correct_credentials(output, None),
+                        lambda output: test_output_after_correct_sign_in(output, '0')
+                    ]),
+                TestCase(
+                    stdin=[
+                        '1',
+                        lambda output: test_card_generation(output, '2'),
+                        lambda output: test_sign_in_with_wrong_pin(output, None),
+                        lambda output: test_output_after_wrong_pin(output, '0')
+                    ]),
+                TestCase(
+                    stdin=[
+                        '1',
+                        lambda output: test_card_generation(output, '2'),
+                        lambda output: test_sign_in_with_wrong_card_number(output, None),
+                        lambda output: test_output_after_wrong_card_number(output, '0')
+                    ]),
+            ]
+
+        def check(self, reply: str, attach) -> CheckResult:
+            global are_all_inputs_read
+            if are_all_inputs_read:
+                return CheckResult.correct()
+            else:
+                return CheckResult.wrong('You didn\'t read all inputs!')
+
+
+    if __name__ == '__main__':
+        BankingSystem('banking.banking').run_tests()
+  learner_created: false
+- name: banking/banking.py
+  visible: true
+  text: |
+    # Write your code here
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/109/stages/591/implement
+status: Solved
+record: 4
