@@ -1,3 +1,4 @@
+# Start machine resources
 coffee_machine = {
     "water": 400,
     "milk": 540,
@@ -6,6 +7,8 @@ coffee_machine = {
     "money": 550
 }
 
+
+# Reources used for one cup of ...
 espresso = {
     "water": 250,
     "coffee beans": 16,
@@ -30,6 +33,7 @@ cappuccino = {
 }
 
 
+# Display machine status
 def coffee_machine_status():
     print(r"""The coffee machine has:
              {water} of water
@@ -39,7 +43,8 @@ def coffee_machine_status():
              ${money} of money
              """.format(**coffee_machine))
 
-
+    
+# Coffee machine engine
 class MakeCoffee:
     def __init__(self):
         self.coffee_type = None
@@ -58,7 +63,8 @@ class MakeCoffee:
             for item in self.coffee_list[self.coffee_type]:
                 coffee_machine[item] -= self.coffee_list[self.coffee_type][item]
 
-
+                
+# Restore machine resources
 def get_fill():
     print("Write how many ml of water do you want to add:")
     coffee_machine["water"] += int(input())
@@ -69,12 +75,14 @@ def get_fill():
     print("Write how many disposable cups of coffee do you want to add:\n")
     coffee_machine["disposable cups"] += int(input())
 
-
+    
+# Get money from machine
 def get_money():
     print("I gave you ${money}".format(**coffee_machine))
     coffee_machine["money"] = 0
 
 
+# Buy coffee
 def get_buy():
     coffee = MakeCoffee()
     print("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:")
@@ -89,6 +97,7 @@ def get_buy():
         pass
 
 
+# Menu engine
 class Action:
     def __init__(self):
         self.engine_command = 0
