@@ -1,0 +1,11 @@
+type: hyperskill
+title: To-Do List
+language: English
+summary: To-Do list can improve your work and personal life. You can use it to reduce
+  the stress in your life and get more done in less time. It also helps you become
+  more reliable for other people and save time for the best things in life. So let's
+  implement it!<br/><br/>Learn more at <a href="https://hyperskill.org">https://hyperskill.org/projects/105</a>
+programming_language: Python
+content:
+- To-Do List
+mode: Study

@@ -1,0 +1,138 @@
+<h2>Description</h2>
+
+<p>It's very upsetting when the data about your to-do tasks disappears after the program is completed. To avoid this problem, you need to create a database where you can store all the necessary information about your tasks. We will use <strong>SQLite</strong> to create the database and <strong>SQLAlchemy </strong>to manage the database from Python.</p>
+
+<p>SQLAlchemy is the Python SQL toolkit and Object Relational Mapper (ORM) that gives developers the full power and flexibility of SQL.</p>
+
+<p>First, you need to create your database file. To create it, you should use the <code class="language-python">create_engine()</code> method, where <code class="language-python">file_name</code> is the database file name:</p>
+
+<pre><code class="language-python">from sqlalchemy import create_engine
+
+engine = create_engine('sqlite:///file_name?check_same_thread=False')</code></pre>
+
+<p><code class="language-python">check_same_thread=False</code> argument allows connecting to the database from another thread. It's <strong>required</strong> for the test purpose otherwise, you will get an exception.</p>
+
+<p>Once you've created your database file, you need to create a table in it. First, create a model class that describes the table in the database. All model classes should inherit from the <code class="language-python">DeclarativeMeta</code> class that is returned by <code class="language-python">declarative_base()</code>:</p>
+
+<pre><code class="language-python">from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String, Date
+from datetime import datetime
+
+Base = declarative_base()
+
+
+class Table(Base):
+    __tablename__ = 'table_name'
+    id = Column(Integer, primary_key=True)
+    string_field = Column(String, default='default_value')
+    date_field = Column(Date, default=datetime.today())
+
+    def __repr__(self):
+        return self.string_field</code></pre>
+
+<p>All information about the table is described in its model class.</p>
+
+<ul>
+	<li><code class="language-python">Table</code> is the name of the model class. It is used to access data from the table it describes. The name of the class can be anything.</li>
+	<li><code class="language-python">__tablename__</code> specifies the table name in the database.</li>
+	<li><code class="language-python">id</code> is an integer column of the table; <code class="language-python">primary_key=True</code> says that this column is the primary key.</li>
+	<li><code class="language-python">string_field</code> is a string column; <code class="language-python">default='default_value'</code> says that the default value of this column is <code class="language-python">'default_value'</code>.</li>
+	<li><code class="language-python">date_field</code> is a column that stores the date. SQLAlchmey automatically converts SQL <code class="language-python">date</code> into a Python <code class="language-python">datetime</code> object.</li>
+	<li><code class="language-python">__repr__</code> method returns a string representation of the class object. In the ORM concept, each row in the table is an object of a class.</li>
+</ul>
+
+<p>After we've described our table, it's time to create it in our database. All we need is to call the <code class="language-python">create_all()</code> method and pass <code class="language-python">engine</code> to it:</p>
+
+<pre><code class="language-python">Base.metadata.create_all(engine)</code></pre>
+
+<p>This method creates a table in our database by generating SQL queries according to the models we described.</p>
+
+<p>Now we can access the database and store data in it. To access the database, we need to create a session:</p>
+
+<pre><code class="language-python">from sqlalchemy.orm import sessionmaker
+
+Session = sessionmaker(bind=engine)
+session = Session()</code></pre>
+
+<p>The <code class="language-python">session</code> object is the only thing you need to manage the database. To create a row in our table, you need to create an object of the model class and pass it to the <code class="language-python">add()</code> method:</p>
+
+<pre><code class="language-python">new_row = Table(string_field='This is string field!',
+         date_field=datetime.strptime('01-24-2020', '%m-%d-%Y').date())
+session.add(new_row)
+session.commit()</code></pre>
+
+<p>To get all rows from the table, you can pass the model class to the <code class="language-python">query()</code> method that selects all rows from the table represented by a model class:</p>
+
+<pre><code class="language-python">rows = session.query(Table).all()</code></pre>
+
+<p>The <code class="language-python">all()</code> method returns all rows from the table as a Python list. Each element of this list is an object of the model class. You can access the row fields by their names:</p>
+
+<pre><code class="language-python">first_row = rows[0] # In case rows list is not empty
+
+print(first_row.string_field) # Will print value of the string_field
+print(first_row.id) # Will print the id of the row.
+print(first_row) # Will print the string that was returned by __repr__ method</code></pre>
+
+<h2>Objectives</h2>
+
+<p>Let's store the data about our tasks in the database. Here's what you need to do:</p>
+
+<ul>
+	<li>Create a database file. Its name should be <code class="language-python">todo.db</code>.</li>
+	<li>Create a table in this database. The table name should be <code class="language-python">task</code>. </li>
+</ul>
+
+<p>The table <code class="language-python">task</code> should have the following columns:</p>
+
+<ul>
+	<li>Integer column named <code class="language-python">id</code>. It should be the <code class="language-python">primary key</code>.</li>
+	<li>String column named <code class="language-python">task</code>.</li>
+	<li>Date column named <code class="language-python">deadline</code>. It should have the date when the task was created by default. You can use <code class="language-python">datetime.today()</code> method.</li>
+</ul>
+
+<p>Also, you need to implement a menu that will make your program more convenient. The menu should have the following items:</p>
+
+<ol>
+	<li><strong>Today's tasks</strong>. Prints all tasks for today.</li>
+	<li><strong>Add task</strong>. Asks for task description and saves it in the database.</li>
+	<li><strong>Exit.</strong></li>
+</ol>
+
+<h2>Example</h2>
+
+<p>The greater-than symbol followed by space (<code class="language-python">&gt; </code>) represents the user input. Note that it's not the part of the input.</p>
+
+<p><strong>Output:</strong></p>
+
+<pre><code class="language-no-highlight">1) Today's tasks
+2) Add task
+0) Exit
+&gt; 1
+
+Today:
+Nothing to do!
+
+1) Today's tasks
+2) Add task
+0) Exit
+&gt; 2
+
+Enter task
+&gt;Prepare presentation
+The task has been added!
+
+1) Today's tasks
+2) Add task
+0) Exit
+&gt; 1
+
+Today:
+1. Prepare presentation
+
+1) Today's tasks
+2) Add task
+0) Exit
+&gt; 0
+
+Bye!
+</code></pre>

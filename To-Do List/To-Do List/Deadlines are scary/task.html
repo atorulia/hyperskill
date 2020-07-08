@@ -1,0 +1,122 @@
+<h2>Description</h2>
+
+<p>Everyday, we’re surrounded by thousands of small distractions, facts, and bits of odd information. When you’re on a deadline, you don’t have time for all this fluff. You need to focus on the task at hand, so you can’t afford to spend hours on Pinterest, chatting at the water cooler with your coworkers, or watching re-runs on TV. At this point in time, the deadline takes precedence.</p>
+
+<p>So let's add the ability to set deadlines to our tasks. Python <code class="language-python">datetime</code> module will help us to work with dates.</p>
+
+<p>Here are some methods that might help you:</p>
+
+<pre><code class="language-python">from datetime import datetime, timedelta
+
+datetime.today() # return current date and time.
+datetime.today().date() # current date without time
+datetime.today().time() # current time without date
+
+datetime.strptime(date_string, format) # return a datetime corresponding to date_string, parsed according to format.
+# Format example: '%Y-%m-%d' - '2020-04-24'
+
+today = datetime.today()
+today.day # the day of a current month.
+today.strftime('%b') # the short name of the current month. I.e 'Apr'
+today.weekday() # return the day of the week as an integer, where Monday is 0 and Sunday is 6.
+
+yesterday = today - timedelta(days=1) # a timedelta object represents a duration, the difference between two dates or times.
+day_after_tomorrow = today + timedelta(days=2)</code></pre>
+
+<p>To select rows from the table with some condition, you can use <code class="language-python">filter()</code> method that accepts the condition by which to select rows:</p>
+
+<pre><code class="language-python">from datetime import datetime
+
+today = datetime.today()
+rows = session.query(Table).filter(Table.date == today).all()</code></pre>
+
+<p>In the code snippet above, we selected all rows from <code class="language-python">Table</code> where the date column equals today's date.</p>
+
+<h2>Objectives</h2>
+
+<p>Add the following items to your menu:</p>
+
+<ul>
+	<li><strong>Week's tasks</strong>: prints all tasks for 7 days from today.</li>
+	<li><strong>All tasks</strong>: prints all tasks sorted by deadline.</li>
+</ul>
+
+<p>Now <strong>Add task</strong> item should ask for the deadline of the task. Users should input the deadline in this format: <strong>YYYY-MM-DD</strong>.</p>
+
+<p>Also, <strong>Today's tasks </strong>item should print today's date.</p>
+
+<p>See the format of the output in the example.</p>
+
+<h2>Example</h2>
+
+<p>The greater-than symbol followed by space (<code class="language-python">&gt; </code>) represents the user input. Notice that it's not the part of the input.</p>
+
+<p><strong>Output:</strong></p>
+
+<pre><code class="language-no-highlight">1) Today's tasks
+2) Week's tasks
+3) All tasks
+4) Add task
+0) Exit
+&gt; 1
+
+Today 26 Apr:
+Nothing to do!
+
+1) Today's tasks
+2) Week's tasks
+3) All tasks
+4) Add task
+0) Exit
+&gt; 4
+
+Enter task
+&gt;Meet my friends
+Enter deadline
+&gt;2020-04-28
+The task has been added!
+
+1) Today's tasks
+2) Week's tasks
+3) All tasks
+4) Add task
+0) Exit
+&gt; 2
+
+Sunday 26 Apr:
+Nothing to do!
+
+Monday 27 Apr:
+Nothing to do!
+
+Tuesday 28 Apr:
+1. Meet my friends
+
+Wednesday 29 Apr:
+Nothing to do!
+
+Thursday 30 Apr:
+1. Math homework
+2. Call my mom
+
+Friday 1 May:
+1. Order a new keyboard 
+
+Saturday 2 May:
+Nothing to do!
+&gt;3
+
+All tasks:
+1. Meet my friends. 28 Apr
+2. Math homework. 30 Apr
+3. Call my mom. 30 Apr
+4. Order a new keyboard. 1 May
+
+1) Today's tasks
+2) Week's tasks
+3) All tasks
+4) Add task
+0) Exit
+&gt; 0
+
+Bye!</code></pre>
