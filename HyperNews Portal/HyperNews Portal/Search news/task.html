@@ -1,0 +1,38 @@
+<h2 style="text-align: center;">Description</h2>
+
+<p>You kept adding news to your site and everything was great. At some point, there was a lot of news materials on your site and it became difficult to find what you need. You decided to add a search to your site.</p>
+
+<h2 style="text-align: center;">Objectives</h2>
+
+<p>Add a search form to your main page with one input element with the name <code class="language-django">q</code> . The form should send GET requests to the same <em>/news/</em> page. The format of the result page stays the same but includes only that specific piece of news whose title contains the input data.</p>
+
+<p>Do you remember the "<em>Coming soon</em>" page? Now your site is complete and all requests to that page should be redirected to the main page at <em>localhost:8000/news/.</em></p>
+
+<p>Great job!</p>
+
+<h2 style="text-align: center;">Extra</h2>
+
+<p>This step is <strong>NOT</strong> part of the assessment but for ones who eager to prettify the result with the CSS. If you follow all the requirements related to page layouts, then you can add the <a target="_blank" href="https://stepik.org/media/attachments/lesson/339506/base.css" rel="noopener noreferrer nofollow">base.css</a> file in your project.</p>
+
+<p>Create the path <em>static/css</em> in the root of your project and put the <em>base.css</em> file there. Then paste at the top of each template you've created:</p>
+
+<pre><code class="language-django">{% load static %}
+&lt;link rel="stylesheet" target="_blank" href="{% static 'css/base.css' %}"&gt;</code></pre>
+
+<p>Tweak your settings a little bit:</p>
+
+<pre><code class="language-python">DEBUG = True
+ 
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]</code></pre>
+
+<p>And add an URL pattern to match static content:</p>
+
+<pre><code class="language-python">from django.conf import settings
+from django.conf.urls.static import static
+  
+urlpatterns += static(settings.STATIC_URL)</code></pre>
+
+<p>Launch your application again, and look at the result!</p>
+
+<p>You can also play around with the content of the <em>static/css/base.css</em> file and see what you get else.</p>
