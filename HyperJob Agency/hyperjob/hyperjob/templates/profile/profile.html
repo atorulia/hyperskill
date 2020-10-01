@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if is_staff %}
+        <form method="get" action="vacancy/new">
+            {% csrf_token %}
+            <button type="submit">Create</button>
+        </form>
+    {% else %}
+        <form method="get" action="resume/new">
+            {% csrf_token %}
+            <button type="submit">Create</button>
+        </form>
+    {% endif %}
+{% endblock %}
