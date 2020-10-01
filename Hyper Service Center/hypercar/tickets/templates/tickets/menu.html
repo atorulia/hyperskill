@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <ul>
+        {% for path, link_text in choices.items %}
+        <li>
+            <a href="/get_ticket/{{ path }}">{{ link_text }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

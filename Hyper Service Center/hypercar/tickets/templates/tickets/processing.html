@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <div>Change oil queue: {{ queue.change_oil }}</div>
+    <div>Inflate tires queue: {{ queue.inflate_tires }}</div>
+    <div>Get diagnostic queue: {{ queue.diagnostic }}</div>
+
+    <form method="post">{% csrf_token %}
+      <button type="submit">Process next</button>
+    </form>
+{% endblock %}
