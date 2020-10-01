@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    {% block content %}
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.created }}</p>
+        <p>{{ article.text }}</p>
+        <a href="/news/">News</a>
+    {% endblock content %}
+</body>
+</html>
